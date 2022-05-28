@@ -1,7 +1,7 @@
 {
-  "name": "@open-mail-archive/<PACKAGE_NAME>",
+  "name": "@open-mail-archive/users-scheduler",
   "version": "1.0.0",
-  "description": "<PACKAGE_DESCRIPTION>",
+  "description": "Microservice from the scheduler component of the app, responsible for generating jobs related to user accounts.",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -10,7 +10,6 @@
     "dist/**/*"
   ],
   "scripts": {
-    "init": "node scripts/init.js",
     "build": "tsc",
     "prod": "node ./dist/index.js",
     "clean": "rimraf dist",
@@ -20,20 +19,21 @@
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "dev": "NODE_OPTIONS='--no-warnings --loader ts-node/esm' nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts",
-    "test": "jest",
-    "test:dev": "jest --watch"
+    "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' node dist/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:dev": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Open-Mail-Archive/<REPO_NAME>.git"
+    "url": "git+https://github.com/Open-Mail-Archive/users-scheduler.git"
   },
   "keywords": [],
   "author": "Mircea-Pavel ANTON (Michael Anthony)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Open-Mail-Archive/<REPO_NAME>/issues"
+    "url": "https://github.com/Open-Mail-Archive/users-scheduler/issues"
   },
-  "homepage": "https://github.com/Open-Mail-Archive/<REPO_NAME>#readme",
+  "homepage": "https://github.com/Open-Mail-Archive/users-scheduler#readme",
   "devDependencies": {
     "@types/jest": "^27.5.1",
     "@types/node": "^17.0.32",
