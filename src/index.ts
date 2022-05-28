@@ -1,17 +1,12 @@
 import 'dotenv/config';
-import {RabbitMqHelper} from '@open-mail-archive/rabbitmq-helper';
+import {JobData, RabbitMqHelper} from '@open-mail-archive/rabbitmq-helper';
 import {
   GenericPayload,
   DeletePayload,
   InsertPayload,
   RealtimeHelper,
 } from '@open-mail-archive/realtime-helper';
-import {
-  UserChannel,
-  UserPayload,
-  UserQueue,
-  UserQueueJobData,
-} from '@open-mail-archive/types';
+import {UserChannel, UserPayload, UserQueue} from '@open-mail-archive/types';
 import {RealtimeSubscription} from '@supabase/realtime-js';
 
 RealtimeHelper.client.connect();
@@ -38,7 +33,7 @@ channel.on('*', async (payload: GenericPayload) => {
 
   await RabbitMqHelper.send(
     UserQueue,
-    new UserQueueJobData(payload.type, {user: messagePayload}).toJson(),
+    new JobData<UserPayload>(payload.type, messagePayload).toJson(),
   );
 });
 
