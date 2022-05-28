@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import {RabbitMqHelper} from '@open-mail-archive/rabbitmq-helper';
 import {
   GenericPayload,
